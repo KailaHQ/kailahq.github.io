@@ -1,0 +1,53 @@
+---
+import type { Copy } from '../data/content'
+import { REPO_URL } from '../data/content'
+
+interface Props {
+  copy: Copy
+}
+const { copy } = Astro.props
+const f = copy.footer
+const year = new Date().getFullYear()
+
+const links = [
+  { label: f.guideEn, href: `${REPO_URL}/blob/main/docs/en/user-guide/01-getting-started.md` },
+  { label: f.guideVi, href: `${REPO_URL}/blob/main/docs/vi/user-guide/01-getting-started.md` },
+  { label: f.changelog, href: `${REPO_URL}/blob/main/CHANGELOG.md` },
+  { label: f.license, href: `${REPO_URL}/blob/main/LICENSE.txt` },
+]
+---
+
+<footer class="border-t border-white/5 bg-ink-soft/40">
+  <div class="mx-auto max-w-[1240px] px-5 py-14 sm:px-8">
+    <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <img src="/icon.png" alt="" width="24" height="24" class="rounded-[6px]" />
+          <span class="font-display text-[16px] font-semibold tracking-[-0.03em]">
+            Komfy<span class="text-accent">Edit</span>
+          </span>
+        </div>
+        <p class="mt-3 max-w-[22rem] text-[13.5px] text-ash">{f.tagline}</p>
+      </div>
+
+      <nav class="grid gap-2.5" aria-label={f.docs}>
+        <p class="timecode">{f.docs}</p>
+        {
+          links.map((l) => (
+            <a href={l.href} class="text-[13.5px] text-ash transition-colors hover:text-accent">
+              {l.label}
+            </a>
+          ))
+        }
+        <a href={REPO_URL} class="text-[13.5px] text-ash transition-colors hover:text-accent">
+          GitHub
+        </a>
+      </nav>
+    </div>
+
+    <div class="ruler mt-12"></div>
+    <p class="mt-6 text-[12.5px] leading-relaxed text-ash/65">
+      © {year} KomfyEdit. {f.rights}
+    </p>
+  </div>
+</footer>

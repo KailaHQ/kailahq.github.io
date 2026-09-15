@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from './Nav.astro'
+import Hero from './Hero.astro'
+import TrustBar from './TrustBar.astro'
+import FeatureRow from './FeatureRow.astro'
+import EditPilot from './EditPilot.astro'
+import Compare from './Compare.astro'
+import Download from './Download.astro'
+import Footer from './Footer.astro'
+import { content, type Lang } from '../data/content'
+
+interface Props {
+  lang: Lang
+}
+const { lang } = Astro.props
+const copy = content[lang]
+---
+
+<Layout copy={copy} lang={lang}>
+  <Nav copy={copy} />
+
+  <main>
+    <Hero copy={copy} />
+    <TrustBar copy={copy} />
+
+    <section id="features" class="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-32">
+      <div class="reveal max-w-[44rem]">
+        <div class="flex items-baseline gap-3">
+          <span class="timecode text-accent">{copy.featuresIntro.tc}</span>
+          <span class="h-px w-16 bg-hairline/60"></span>
+        </div>
+        <h2 class="mt-6 whitespace-pre-line text-[clamp(2rem,4.4vw,3.1rem)]">
+          {copy.featuresIntro.title}
+        </h2>
+        <p class="mt-5 text-[15.5px] leading-[1.7] text-ash">{copy.featuresIntro.body}</p>
+      </div>
+
+      <div class="mt-20 space-y-24 sm:mt-24 sm:space-y-32">
+        {copy.features.map((f, i) => <FeatureRow feature={f} flip={i % 2 === 1} />)}
+      </div>
+    </section>
+
+    <EditPilot copy={copy} />
+    <Compare copy={copy} />
+    <Download copy={copy} />
+  </main>
+
+  <Footer copy={copy} />
+</Layout>

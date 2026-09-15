@@ -1,0 +1,32 @@
+---
+import type { Copy } from '../data/content'
+
+interface Props {
+  copy: Copy
+}
+const { copy } = Astro.props
+---
+
+<section class="border-y border-white/5 bg-ink-soft/50">
+  <ul class="mx-auto grid max-w-[1240px] grid-cols-1 gap-px px-5 sm:grid-cols-2 sm:px-8 lg:grid-cols-4">
+    {
+      copy.trust.map((t, i) => (
+        <li
+          class="reveal relative py-9 lg:py-11 lg:pr-8 lg:pl-8 lg:first:pl-0"
+          style={`--reveal-delay:${i * 70}ms`}
+        >
+          {i > 0 && (
+            <span
+              class="pointer-events-none absolute left-0 top-1/2 hidden h-12 w-px -translate-y-1/2 bg-hairline/70 lg:block"
+              aria-hidden="true"
+            />
+          )}
+          <p class="font-display text-[2.1rem] font-semibold leading-none tracking-[-0.04em] text-chalk">
+            {t.value}
+          </p>
+          <p class="mt-3 max-w-[17rem] text-[13.5px] leading-relaxed text-ash">{t.label}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

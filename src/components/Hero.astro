@@ -1,0 +1,74 @@
+---
+import type { Copy } from '../data/content'
+import { APP_VERSION, REPO_URL, RELEASES_URL } from '../data/content'
+import ScreenShot from './ScreenShot.astro'
+
+interface Props {
+  copy: Copy
+}
+const { copy } = Astro.props
+const versionNote = copy.hero.versionNote.replace('{v}', APP_VERSION)
+---
+
+<section class="relative overflow-hidden">
+  <!-- Ambience: a cyan bloom off-centre behind the headline, over a faint grid
+       floor. Both are pure CSS so the hero costs no image before the shot. -->
+  <div class="pointer-events-none absolute inset-0 grid-floor opacity-70" aria-hidden="true"></div>
+  <div
+    class="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-[65%] rounded-full bg-accent/12 blur-[130px]"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent to-ink"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-[1240px] px-5 pb-20 pt-20 sm:px-8 sm:pt-28 lg:pt-32">
+    <div class="max-w-[54rem]">
+      <p
+        class="reveal timecode inline-flex items-center gap-2 rounded-full border border-hairline/70 bg-panel/60 px-3 py-1.5"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        {copy.hero.badge}
+      </p>
+
+      <h1
+        class="reveal mt-7 text-[clamp(2.6rem,7.2vw,5.4rem)]"
+        style="--reveal-delay:80ms"
+      >
+        <span class="block">{copy.hero.title[0]}</span>
+        <span class="block text-gradient">{copy.hero.title[1]}</span>
+      </h1>
+
+      <p
+        class="reveal mt-7 max-w-[46rem] text-[16.5px] leading-[1.65] text-ash sm:text-[17.5px]"
+        style="--reveal-delay:160ms"
+      >
+        {copy.hero.lede}
+      </p>
+
+      <div class="reveal mt-9 flex flex-wrap items-center gap-3" style="--reveal-delay:240ms">
+        <a href={RELEASES_URL} class="btn-primary rounded-[9px] px-6 py-3.5 text-[15px]">
+          {copy.hero.ctaPrimary}
+        </a>
+        <a href={REPO_URL} class="btn-ghost rounded-[9px] px-6 py-3.5 text-[15px]">
+          {copy.hero.ctaSecondary}
+        </a>
+        <span class="timecode ml-1 normal-case tracking-[0.1em]">{versionNote}</span>
+      </div>
+    </div>
+
+    <!-- The shot sits low and wide, clipped by the viewport on large screens so
+         the timeline runs off the edge the way it does in the app. -->
+    <div class="reveal relative mt-16 sm:mt-20" style="--reveal-delay:120ms">
+      <div
+        class="pointer-events-none absolute -inset-x-10 -top-10 bottom-10 rounded-[40px] bg-accent/8 blur-[90px]"
+        aria-hidden="true"
+      >
+      </div>
+      <ScreenShot src="/shots/hero.png" alt={copy.hero.shotAlt} priority class="relative" />
+    </div>
+  </div>
+</section>

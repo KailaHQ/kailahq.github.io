@@ -1,0 +1,74 @@
+---
+import type { Copy } from '../data/content'
+
+interface Props {
+  copy: Copy
+}
+const { copy } = Astro.props
+const c = copy.compare
+---
+
+<section class="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-32">
+  <div class="reveal max-w-[40rem]">
+    <div class="flex items-baseline gap-3">
+      <span class="timecode text-accent">{c.tc}</span>
+      <span class="h-px w-16 bg-hairline/60"></span>
+    </div>
+    <h2 class="mt-6 text-[clamp(2rem,4.2vw,3rem)]">{c.title}</h2>
+    <p class="mt-5 text-[15.5px] leading-[1.7] text-ash">{c.body}</p>
+  </div>
+
+  <!-- Narrow screens scroll the table rather than squeezing three columns
+       into 375px; the first column stays wide enough to read the claim. -->
+  <div class="reveal mt-12 overflow-x-auto" style="--reveal-delay:90ms">
+    <table class="w-full min-w-[620px] border-collapse text-left">
+      <thead>
+        <tr class="border-b border-hairline/70">
+          <th class="py-4 pr-6 text-[13px] font-medium text-ash"></th>
+          {
+            c.cols.map((col, i) => (
+              <th
+                class={`py-4 pr-6 font-display text-[15px] font-semibold tracking-[-0.02em] ${
+                  i === 0 ? 'text-accent' : 'text-ash'
+                }`}
+              >
+                {col}
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          c.rows.map((row) => (
+            <tr class="border-b border-white/[0.045]">
+              <th
+                scope="row"
+                class="py-4 pr-6 text-[14.5px] font-normal text-chalk/85"
+              >
+                {row.label}
+              </th>
+              {row.cells.map((cell, i) => (
+                <td class="py-4 pr-6 text-[14px]">
+                  {typeof cell === 'boolean' ? (
+                    cell ? (
+                      <span class={i === 0 ? 'text-accent' : 'text-chalk/70'} aria-label="yes">
+                        ✓
+                      </span>
+                    ) : (
+                      <span class="text-ash/45" aria-label="no">
+                        —
+                      </span>
+                    )
+                  ) : (
+                    <span class={i === 0 ? 'text-accent' : 'text-ash'}>{cell}</span>
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

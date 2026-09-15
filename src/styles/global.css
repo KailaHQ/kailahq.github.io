@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+
+/* ─────────────────────────────────────────
+   KomfyEdit marketing site — theme tokens
+   Surface + accent values mirror the app's own
+   theme block in frontend/index.css so a screenshot
+   dropped on the page sits on the same ground.
+   ───────────────────────────────────────── */
+@theme {
+  --color-ink: #0a0a0b;
+  --color-ink-soft: #131315;
+  --color-panel: #1b1b1e;
+  --color-raised: #26262a;
+  --color-hairline: #34343a;
+
+  --color-accent: #22dddd;
+  --color-accent-deep: #10bfbf;
+  --color-ember: #ff7a45;
+
+  --color-chalk: #ededf1;
+  --color-ash: #9a9aa4;
+
+  --font-display: 'Bricolage Grotesque', 'Be Vietnam Pro', sans-serif;
+  --font-body: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-ink);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #06181a;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Section eyebrows are set as timecodes — the site is paced like a cut list. */
+  .timecode {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ash);
+  }
+
+  /* A single hairline with a lit tick at its head: the timeline ruler motif
+     that separates every act of the page. */
+  .ruler {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-hairline), transparent 70%);
+  }
+  .ruler::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -4px;
+    width: 1px;
+    height: 9px;
+    background: var(--color-accent);
+  }
+
+  /* Screenshot chrome: a hair of raised bezel so app captures read as a
+     window rather than a floating rectangle. */
+  .screenframe {
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--color-hairline) 90%, transparent);
+    background: var(--color-ink-soft);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.04) inset,
+      0 40px 80px -30px rgb(0 0 0 / 0.9),
+      0 0 120px -60px var(--color-accent);
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: #06181a;
+    font-weight: 600;
+    transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo), background 0.2s;
+  }
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--color-accent) 85%, white);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -12px var(--color-accent);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--color-hairline);
+    color: var(--color-chalk);
+    transition: border-color 0.2s, background 0.2s, transform 0.25s var(--ease-out-expo);
+  }
+  .btn-ghost:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+    background: rgb(255 255 255 / 0.03);
+    transform: translateY(-2px);
+  }
+}
+
+@layer utilities {
+  /* Film grain. One tiled SVG turbulence over the whole page at very low
+     opacity — kills the flatness of large near-black fields without
+     costing a raster asset. */
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .grid-floor {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.028) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(170deg, var(--color-chalk) 25%, color-mix(in srgb, var(--color-accent) 70%, #ffffff));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Scroll reveal. Elements opt in with .reveal; an IntersectionObserver in
+     the layout flips .is-in. No-JS and reduced-motion both fall back to the
+     final state, so nothing is ever stranded invisible. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

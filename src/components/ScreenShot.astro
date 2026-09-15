@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string
+  alt: string
+  /** Hero shots load eagerly; everything below the fold waits. */
+  priority?: boolean
+  class?: string
+}
+const { src, alt, priority = false, class: klass = '' } = Astro.props
+---
+
+<figure class={`screenframe ${klass}`}>
+  <!-- Window chrome. Three dots and a blank title strip is enough to read as
+       "application window" without faking a specific OS. -->
+  <div class="flex h-8 items-center gap-1.5 border-b border-white/5 bg-panel px-3.5">
+    <span class="h-2 w-2 rounded-full bg-white/15"></span>
+    <span class="h-2 w-2 rounded-full bg-white/15"></span>
+    <span class="h-2 w-2 rounded-full bg-white/15"></span>
+    <span class="ml-3 font-mono text-[10px] tracking-[0.14em] text-ash/60">KOMFYEDIT</span>
+  </div>
+  <img
+    src={src}
+    alt={alt}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class="block w-full"
+  />
+</figure>

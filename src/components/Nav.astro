@@ -1,0 +1,41 @@
+---
+import type { Copy } from '../data/content'
+import { REPO_URL, DOCS_URL } from '../data/content'
+
+interface Props {
+  copy: Copy
+}
+const { copy } = Astro.props
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-white/5 bg-ink/70 backdrop-blur-xl supports-[backdrop-filter]:bg-ink/55"
+>
+  <nav class="mx-auto flex h-16 max-w-[1240px] items-center gap-6 px-5 sm:px-8">
+    <a href={copy.htmlLang === 'vi' ? '/vi/' : '/'} class="flex items-center gap-2.5">
+      <img src="/icon.png" alt="" width="26" height="26" class="rounded-[7px]" />
+      <span class="font-display text-[17px] font-semibold tracking-[-0.03em]">
+        Komfy<span class="text-accent">Edit</span>
+      </span>
+    </a>
+
+    <div class="ml-auto hidden items-center gap-7 text-[13.5px] text-ash md:flex">
+      <a href="#features" class="transition-colors hover:text-chalk">{copy.nav.features}</a>
+      <a href="#editpilot" class="transition-colors hover:text-chalk">{copy.nav.editpilot}</a>
+      <a href={DOCS_URL} class="transition-colors hover:text-chalk">{copy.nav.docs}</a>
+      <a href={REPO_URL} class="transition-colors hover:text-chalk">GitHub</a>
+      <a
+        href={copy.nav.altHref}
+        class="font-mono text-[11px] uppercase tracking-[0.18em] text-ash transition-colors hover:text-accent"
+        >{copy.nav.altLang}</a
+      >
+    </div>
+
+    <a
+      href="#download"
+      class="btn-primary ml-auto rounded-[7px] px-4 py-2 text-[13.5px] md:ml-0"
+    >
+      {copy.nav.download}
+    </a>
+  </nav>
+</header>
