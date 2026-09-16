@@ -2,8 +2,6 @@ export type Lang = 'en' | 'vi'
 
 export const LANGS: Lang[] = ['en', 'vi']
 
-/** Bumped at release time; the download section also asks the GitHub API at runtime. */
-export const APP_VERSION = '1.0.4'
 /**
  * The repository the download cards and every source link point at.
  *
@@ -37,7 +35,7 @@ export interface Copy {
     lede: string
     ctaPrimary: string
     ctaSecondary: string
-    versionNote: string
+    platformNote: string
     shotAlt: string
   }
   trust: { value: string; label: string }[]
@@ -63,7 +61,7 @@ export interface Copy {
     tc: string
     title: string
     body: string
-    platforms: { os: string; file: string; note: string }[]
+    platforms: { os: string; note: string }[]
     reqTitle: string
     reqs: string[]
     build: string
@@ -93,7 +91,7 @@ const en: Copy = {
       'KailaEdit is a desktop video editor that never phones home. Multi-track timeline, ripple and roll trims, colour, titles, subtitles — exported by the ffmpeg that ships inside the app. No account. No subscription. No watermark.',
     ctaPrimary: 'Download for Windows',
     ctaSecondary: 'View source',
-    versionNote: 'Version {v} · Windows & macOS',
+    platformNote: 'Windows & macOS',
     shotAlt: 'The KailaEdit editor: program monitor, multi-track timeline and properties panel',
   },
   trust: [
@@ -211,8 +209,8 @@ const en: Copy = {
     body:
       'One installer, and no sign-in screen on first run. Media you import is copied into the project folder on your own disk.',
     platforms: [
-      { os: 'Windows', file: 'KailaEdit-Setup-{v}.exe', note: 'Windows 10 or 11, 64-bit' },
-      { os: 'macOS', file: 'KailaEdit-{v}.dmg', note: 'macOS 12+, Apple silicon & Intel' },
+      { os: 'Windows', note: 'Windows 10 or 11, 64-bit' },
+      { os: 'macOS', note: 'macOS 12+, Apple silicon & Intel' },
     ],
     reqTitle: 'What it needs',
     reqs: [
@@ -256,7 +254,7 @@ const vi: Copy = {
       'KailaEdit là trình dựng phim desktop không bao giờ gửi dữ liệu đi đâu. Timeline đa track, trim ripple và roll, chỉnh màu, tiêu đề, phụ đề — xuất bản bằng chính ffmpeg nằm trong ứng dụng. Không tài khoản. Không thuê bao. Không watermark.',
     ctaPrimary: 'Tải cho Windows',
     ctaSecondary: 'Xem mã nguồn',
-    versionNote: 'Phiên bản {v} · Windows & macOS',
+    platformNote: 'Windows & macOS',
     shotAlt: 'Giao diện KailaEdit: màn hình chương trình, timeline đa track và bảng thuộc tính',
   },
   trust: [
@@ -374,8 +372,8 @@ const vi: Copy = {
     body:
       'Một bộ cài, mở lần đầu không có màn hình đăng nhập. Media bạn nhập vào được sao chép vào thư mục project trên ổ đĩa của chính bạn.',
     platforms: [
-      { os: 'Windows', file: 'KailaEdit-Setup-{v}.exe', note: 'Windows 10 hoặc 11, 64-bit' },
-      { os: 'macOS', file: 'KailaEdit-{v}.dmg', note: 'macOS 12 trở lên, Apple silicon & Intel' },
+      { os: 'Windows', note: 'Windows 10 hoặc 11, 64-bit' },
+      { os: 'macOS', note: 'macOS 12 trở lên, Apple silicon & Intel' },
     ],
     reqTitle: 'Yêu cầu hệ thống',
     reqs: [

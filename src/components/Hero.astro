@@ -1,13 +1,12 @@
 ---
 import type { Copy } from '../data/content'
-import { APP_VERSION, REPO_URL, RELEASES_URL } from '../data/content'
+import { REPO_URL, RELEASES_URL } from '../data/content'
 import TimelineArt from './TimelineArt.astro'
 
 interface Props {
   copy: Copy
 }
 const { copy } = Astro.props
-const versionNote = copy.hero.versionNote.replace('{v}', APP_VERSION)
 ---
 
 <section class="relative overflow-hidden">
@@ -56,7 +55,7 @@ const versionNote = copy.hero.versionNote.replace('{v}', APP_VERSION)
         <a href={REPO_URL} class="btn-ghost rounded-[9px] px-6 py-3.5 text-[15px]">
           {copy.hero.ctaSecondary}
         </a>
-        <span class="timecode ml-1 normal-case tracking-[0.1em]">{versionNote}</span>
+        <span class="timecode ml-1 normal-case tracking-[0.1em]">{copy.hero.platformNote}</span>
       </div>
     </div>
 
