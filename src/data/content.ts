@@ -28,7 +28,7 @@ export interface Feature {
 export interface Copy {
   htmlLang: string
   meta: { title: string; description: string }
-  nav: { features: string; editpilot: string; download: string; docs: string; altLang: string; altHref: string }
+  nav: { features: string; coedit: string; download: string; docs: string; altLang: string; altHref: string }
   hero: {
     badge: string
     title: string[]
@@ -41,7 +41,7 @@ export interface Copy {
   trust: { value: string; label: string }[]
   featuresIntro: { tc: string; title: string; body: string }
   features: Feature[]
-  editpilot: {
+  coedit: {
     tc: string
     title: string
     body: string
@@ -78,7 +78,7 @@ const en: Copy = {
   },
   nav: {
     features: 'Features',
-    editpilot: 'EditPilot',
+    coedit: 'CoEdit',
     download: 'Download',
     docs: 'Docs',
     altLang: 'Tiếng Việt',
@@ -166,11 +166,11 @@ const en: Copy = {
       shotAlt: 'Export dialog showing format, resolution and quality settings',
     },
   ],
-  editpilot: {
+  coedit: {
     tc: '00:05',
-    title: 'EditPilot drives the timeline.\nYour CLI. Your machine.',
+    title: 'CoEdit drives the timeline.\nYour CLI. Your machine.',
     body:
-      'EditPilot is the agent panel inside the editor. It runs the AI CLI you already have — Claude Code, Codex or Antigravity — and reaches the project only through KailaEdit’s own MCP server. Ask it to cut the silence out of a forty-minute take, then watch the clips move.',
+      'CoEdit is the agent panel inside the editor. It runs the AI CLI you already have — Claude Code, Codex or Antigravity — and reaches the project only through KailaEdit’s own MCP server. Ask it to cut the silence out of a forty-minute take, then watch the clips move.',
     points: [
       {
         title: 'No hidden model',
@@ -186,8 +186,8 @@ const en: Copy = {
       },
     ],
     note: 'Optional. The editor is complete without it.',
-    shot: '/shots/06-editpilot.png',
-    shotAlt: 'EditPilot agent panel open next to the timeline',
+    shot: '/shots/06-coedit.png',
+    shotAlt: 'CoEdit agent panel open next to the timeline',
   },
   compare: {
     tc: '00:06',
@@ -241,7 +241,7 @@ const vi: Copy = {
   },
   nav: {
     features: 'Tính năng',
-    editpilot: 'EditPilot',
+    coedit: 'CoEdit',
     download: 'Tải về',
     docs: 'Tài liệu',
     altLang: 'English',
@@ -329,11 +329,11 @@ const vi: Copy = {
       shotAlt: 'Hộp thoại xuất bản với định dạng, độ phân giải và chất lượng',
     },
   ],
-  editpilot: {
+  coedit: {
     tc: '00:05',
-    title: 'EditPilot điều khiển timeline.\nCLI của bạn. Máy của bạn.',
+    title: 'CoEdit điều khiển timeline.\nCLI của bạn. Máy của bạn.',
     body:
-      'EditPilot là bảng agent nằm trong trình dựng. Nó chạy chính CLI AI mà bạn đã cài — Claude Code, Codex hay Antigravity — và chạm tới project chỉ qua MCP server của KailaEdit. Bảo nó cắt hết khoảng lặng trong một cú quay bốn mươi phút, rồi nhìn các clip tự dịch chuyển.',
+      'CoEdit là bảng agent nằm trong trình dựng. Nó chạy chính CLI AI mà bạn đã cài — Claude Code, Codex hay Antigravity — và chạm tới project chỉ qua MCP server của KailaEdit. Bảo nó cắt hết khoảng lặng trong một cú quay bốn mươi phút, rồi nhìn các clip tự dịch chuyển.',
     points: [
       {
         title: 'Không có model ẩn',
@@ -349,8 +349,8 @@ const vi: Copy = {
       },
     ],
     note: 'Không bắt buộc. Trình dựng vẫn đầy đủ nếu bạn không dùng.',
-    shot: '/shots/06-editpilot.png',
-    shotAlt: 'Bảng agent EditPilot mở cạnh timeline',
+    shot: '/shots/06-coedit.png',
+    shotAlt: 'Bảng agent CoEdit mở cạnh timeline',
   },
   compare: {
     tc: '00:06',

@@ -4,28 +4,46 @@ interface Props {
   alt: string
   /** The hero shot loads eagerly; everything below the fold waits. */
   priority?: boolean
+  /**
+   * Window chrome belongs on a capture of the whole application window. The
+   * feature captures are crops of single panels — a title bar drawn around a
+   * 400px-wide properties panel would claim it is a window when it isn't.
+   */
+  chrome?: boolean
   class?: string
 }
-const { src, alt, priority = false, class: klass = '' } = Astro.props
+const { src, alt, priority = false, chrome = false, class: klass = '' } = Astro.props
 ---
 
-<figure class={`screenframe ${klass}`}>
-  <!-- Window chrome. Three dots and a blank title strip is enough to read as
-       "application window" without faking a specific OS. -->
-  <div class="flex h-8 items-center gap-1.5 border-b border-white/5 bg-panel px-3.5">
-    <span class="h-2 w-2 rounded-full bg-white/15"></span>
-    <span class="h-2 w-2 rounded-full bg-white/15"></span>
-    <span class="h-2 w-2 rounded-full bg-white/15"></span>
-    <span class="ml-3 font-mono text-[10px] tracking-[0.14em] text-ash/60">KAILAEDIT</span>
-  </div>
+<figure class={`screenframe ${chrome ? '' : 'p-3 sm:p-5'} ${klass}`}>
+  {
+    chrome && (
+      <div class="flex h-8 items-center gap-1.5 border-b border-white/5 bg-panel px-3.5">
+        <span class="h-2 w-2 rounded-full bg-white/15" />
+        <span class="h-2 w-2 rounded-full bg-white/15" />
+        <span class="h-2 w-2 rounded-full bg-white/15" />
+        <span class="ml-3 font-mono text-[10px] tracking-[0.14em] text-ash/60">KAILAEDIT</span>
+      </div>
+    )
+  }
+
+  <!--
+    No width/height attributes: the captures are crops at whatever size the
+    panel happened to be, from 366×660 to 1919×1030, and a fixed pair here
+    would stretch every one of them to the same wrong aspect ratio.
+    `max-h` keeps a tall portrait crop from towering over a wide one so the
+    alternating rows still line up.
+  -->
   <img
     src={src}
     alt={alt}
-    width="1920"
-    height="1200"
     loading={priority ? 'eager' : 'lazy'}
     decoding={priority ? 'sync' : 'async'}
     fetchpriority={priority ? 'high' : 'auto'}
-    class="block w-full"
+    class={
+      chrome
+        ? 'block w-full'
+        : 'mx-auto block max-h-[26rem] w-auto max-w-full rounded-md sm:max-h-[30rem]'
+    }
   />
 </figure>
