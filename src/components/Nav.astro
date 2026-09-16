@@ -6,6 +6,19 @@ interface Props {
   copy: Copy
 }
 const { copy } = Astro.props
+
+// The page answers at two addresses per language, so the language switch has
+// to be worked out rather than stored: it keeps you on the variant you are
+// already reading instead of dropping you from /kaila-edit/ onto /vi/.
+const onProductPath = Astro.url.pathname.includes('/kaila-edit')
+const isVi = copy.htmlLang === 'vi'
+const altHref = isVi
+  ? onProductPath
+    ? '/kaila-edit/'
+    : '/'
+  : onProductPath
+    ? '/vi/kaila-edit/'
+    : '/vi/'
 ---
 
 <header
@@ -25,7 +38,7 @@ const { copy } = Astro.props
       <a href={DOCS_URL} class="transition-colors hover:text-chalk">{copy.nav.docs}</a>
       <a href={REPO_URL} class="transition-colors hover:text-chalk">GitHub</a>
       <a
-        href={copy.nav.altHref}
+        href={altHref}
         class="font-mono text-[11px] uppercase tracking-[0.18em] text-ash transition-colors hover:text-accent"
         >{copy.nav.altLang}</a
       >

@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css'
-import type { Copy, Lang } from '../data/content'
+import { CANONICAL_PATH, type Copy, type Lang } from '../data/content'
 
 interface Props {
   copy: Copy
@@ -8,7 +8,13 @@ interface Props {
 }
 
 const { copy, lang } = Astro.props
-const canonical = new URL(Astro.url.pathname, Astro.site).href
+
+// Not Astro.url.pathname: this page is served at both `/` and `/kaila-edit/`,
+// and both have to name the same canonical or search engines index them as two
+// competing copies. See CANONICAL_PATH for why the deeper one wins.
+const canonical = new URL(CANONICAL_PATH[lang], Astro.site).href
+const canonicalEn = new URL(CANONICAL_PATH.en, Astro.site).href
+const canonicalVi = new URL(CANONICAL_PATH.vi, Astro.site).href
 const ogImage = new URL('/og.png', Astro.site).href
 ---
 
@@ -22,9 +28,9 @@ const ogImage = new URL('/og.png', Astro.site).href
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.png" type="image/png" />
-    <link rel="alternate" hreflang="en" href={new URL('/', Astro.site).href} />
-    <link rel="alternate" hreflang="vi" href={new URL('/vi/', Astro.site).href} />
-    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
+    <link rel="alternate" hreflang="en" href={canonicalEn} />
+    <link rel="alternate" hreflang="vi" href={canonicalVi} />
+    <link rel="alternate" hreflang="x-default" href={canonicalEn} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={copy.meta.title} />

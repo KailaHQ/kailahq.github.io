@@ -8,6 +8,21 @@ export const REPO_URL = `https://github.com/${REPO}`
 export const RELEASES_URL = `${REPO_URL}/releases/latest`
 export const DOCS_URL = `${REPO_URL}/tree/main/docs`
 
+/**
+ * The address each language's KailaEdit page should be indexed under.
+ *
+ * The page answers on both `/` and `/kaila-edit/` today, because KailaEdit is
+ * the only product and the root is where people arrive. The day a second one
+ * exists, the root becomes the page about Kaila itself while this one keeps
+ * its own address — so pointing search engines at the deeper URL now means the
+ * move costs no ranking later. Both variants declare the same canonical, which
+ * is what stops them counting as duplicates of each other.
+ */
+export const CANONICAL_PATH: Record<Lang, string> = {
+  en: '/kaila-edit/',
+  vi: '/vi/kaila-edit/',
+}
+
 export interface Feature {
   tc: string
   kicker: string
@@ -21,7 +36,7 @@ export interface Feature {
 export interface Copy {
   htmlLang: string
   meta: { title: string; description: string }
-  nav: { features: string; coedit: string; download: string; docs: string; altLang: string; altHref: string }
+  nav: { features: string; coedit: string; download: string; docs: string; altLang: string }
   hero: {
     badge: string
     title: string[]
@@ -75,7 +90,6 @@ const en: Copy = {
     download: 'Download',
     docs: 'Docs',
     altLang: 'Tiếng Việt',
-    altHref: '/vi/',
   },
   hero: {
     badge: 'Free · Open source · Apache-2.0',
@@ -238,7 +252,6 @@ const vi: Copy = {
     download: 'Tải về',
     docs: 'Tài liệu',
     altLang: 'English',
-    altHref: '/',
   },
   hero: {
     badge: 'Miễn phí · Mã nguồn mở · Apache-2.0',
