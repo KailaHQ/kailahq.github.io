@@ -38,12 +38,20 @@ real captures taken from the running app at a fixed 1920×1200 viewport:
 
 ## Deploy
 
-Publishes to the org user page, so the site is served from the domain root and needs no `base`.
+Pushing to  is the deploy:  builds the site and publishes it
+through GitHub Pages (Pages source is set to **GitHub Actions**, so there is no  branch).
 
-```bash
-pnpm build
-./deploy.ps1
-```
+Live at https://kailahq.github.io/ — the org user page, served from the domain root, which is why
+ sets no . A custom domain can be added later by dropping a  file
+in  and pointing DNS at it; GitHub then redirects the github.io URL to it.
 
-`deploy.ps1` pushes `dist/` to the `gh-pages` branch of `kailahq/kailahq.github.io`.
-In the repo's **Settings → Pages**, set Source to *Deploy from a branch* → `gh-pages` / `/ (root)`.
+## Screenshots — still to come
+
+The feature sections are laid out as text on purpose. The only real capture available showed the
+old KomfyEdit branding and a nearly empty timeline, so shipping it would have advertised the wrong
+name.  stands in on the hero: a drawing, clearly not a screenshot.
+
+When real captures exist (fixed 1920x1200 viewport, a demo project with several tracks, colour
+labels, waveforms, subtitles and a text overlay), reintroduce an image column on the feature cards
+and a hero shot. The  /  fields are still carried in  for
+exactly that.

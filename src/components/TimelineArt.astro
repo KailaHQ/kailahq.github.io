@@ -1,0 +1,233 @@
+---
+/**
+ * Decorative timeline. Not a screenshot and not pretending to be one — it is a
+ * drawing of the editor's central idea, in the app's own palette, standing in
+ * for the hero capture until real ones are taken.
+ *
+ * Everything is laid out from these constants so the bars stay on the grid.
+ */
+const TRACK_H = 58
+const GAP = 8
+const HEAD_W = 104
+const TOP = 96
+const W = 1200
+
+const rows = [
+  {
+    label: 'V2',
+    clips: [
+      { x: 118, w: 214, label: '#22dddd' },
+      { x: 342, w: 158, label: '#ff7a45' },
+      { x: 742, w: 268, label: '#7c8cff' },
+    ],
+  },
+  {
+    label: 'V1',
+    clips: [
+      { x: 118, w: 392, label: '#22dddd' },
+      { x: 518, w: 274, label: '#4ade80' },
+      { x: 800, w: 282, label: '#22dddd' },
+    ],
+  },
+]
+
+// Deterministic pseudo-waveform: a couple of detuned sines beaten together so
+// it reads as speech rather than a repeating pattern, with no RNG in the build.
+const bars = Array.from({ length: 160 }, (_, i) => {
+  const t = i / 160
+  const a = Math.sin(t * 41) * Math.sin(t * 7.3 + 1.1) + Math.sin(t * 113) * 0.35
+  return Math.max(0.12, Math.min(1, Math.abs(a) * 0.9 + 0.1))
+})
+
+const subs = [
+  { x: 150, w: 180 },
+  { x: 360, w: 120 },
+  { x: 560, w: 210 },
+  { x: 820, w: 160 },
+]
+
+const rulerTicks = Array.from({ length: 19 }, (_, i) => HEAD_W + 14 + i * 58)
+const waveTop = TOP + 2 * (TRACK_H + GAP)
+const subsTop = waveTop + TRACK_H + GAP
+const H = subsTop + TRACK_H + 22
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  role="img"
+  aria-label="Illustration of a multi-track editing timeline with video clips, an audio waveform and subtitles"
+  class="block w-full"
+>
+  <defs>
+    <linearGradient id="clipFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f2f36" />
+      <stop offset="1" stop-color="#232329" />
+    </linearGradient>
+    <linearGradient id="playGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22dddd" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#22dddd" stop-opacity="0.15" />
+    </linearGradient>
+    <clipPath id="frameClip">
+      <rect x="0" y="0" width={W} height={H} rx="14" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frameClip)">
+    <rect x="0" y="0" width={W} height={H} fill="#131315" />
+    <rect x="0" y="0" width={W} height={H} rx="14" fill="none" stroke="#34343a" />
+
+    <!-- Toolbar -->
+    <rect x="0" y="0" width={W} height="46" fill="#1b1b1e" />
+    <line x1="0" y1="46" x2={W} y2="46" stroke="#34343a" />
+    {
+      [22, 52, 82, 118, 148].map((x) => (
+        <rect x={x} y="15" width="18" height="16" rx="4" fill="#33333a" />
+      ))
+    }
+    <rect x="186" y="15" width="94" height="16" rx="4" fill="#26262a" />
+
+    <!-- Ruler -->
+    <g>
+      {
+        rulerTicks.map((x, i) => (
+          <>
+            <line
+              x1={x}
+              y1={i % 2 === 0 ? 62 : 68}
+              x2={x}
+              y2="78"
+              stroke="#4a4a54"
+              stroke-width="1"
+            />
+            {i % 2 === 0 && (
+              <text x={x + 5} y="70" fill="#75757f" font-size="10" font-family="monospace">
+                {`00:${String(i * 2).padStart(2, '0')}`}
+              </text>
+            )}
+          </>
+        ))
+      }
+    </g>
+
+    <!-- Track heads -->
+    {
+      [...rows.map((r) => r.label), 'A1', 'SUB'].map((label, i) => (
+        <g>
+          <rect
+            x="0"
+            y={TOP + i * (TRACK_H + GAP)}
+            width={HEAD_W}
+            height={TRACK_H}
+            fill="#1b1b1e"
+          />
+          <text
+            x="16"
+            y={TOP + i * (TRACK_H + GAP) + TRACK_H / 2 + 4}
+            fill="#75757f"
+            font-size="11"
+            font-family="monospace"
+            letter-spacing="1"
+          >
+            {label}
+          </text>
+        </g>
+      ))
+    }
+
+    <!-- Video clips -->
+    {
+      rows.map((row, ri) =>
+        row.clips.map((c) => (
+          <g>
+            <rect
+              x={HEAD_W + c.x - 104}
+              y={TOP + ri * (TRACK_H + GAP)}
+              width={c.w}
+              height={TRACK_H}
+              rx="5"
+              fill="url(#clipFill)"
+              stroke="#3c3c44"
+            />
+            <rect
+              x={HEAD_W + c.x - 104}
+              y={TOP + ri * (TRACK_H + GAP)}
+              width={c.w}
+              height="3"
+              rx="1.5"
+              fill={c.label}
+            />
+          </g>
+        )),
+      )
+    }
+
+    <!-- Audio track -->
+    <rect
+      x={HEAD_W + 14}
+      y={waveTop}
+      width={W - HEAD_W - 40}
+      height={TRACK_H}
+      rx="5"
+      fill="#1d2a2c"
+      stroke="#2c4548"
+    />
+    {
+      bars.map((v, i) => {
+        const bw = (W - HEAD_W - 60) / bars.length
+        const h = v * (TRACK_H - 16)
+        return (
+          <rect
+            x={HEAD_W + 24 + i * bw}
+            y={waveTop + (TRACK_H - h) / 2}
+            width={Math.max(1, bw - 1.6)}
+            height={h}
+            fill="#22dddd"
+            opacity="0.55"
+          />
+        )
+      })
+    }
+
+    <!-- Subtitles -->
+    {
+      subs.map((s) => (
+        <rect
+          x={HEAD_W + s.x - 104}
+          y={subsTop + 14}
+          width={s.w}
+          height={TRACK_H - 28}
+          rx="4"
+          fill="#26262a"
+          stroke="#3c3c44"
+        />
+      ))
+    }
+
+    <!-- Playhead -->
+    <g class="playhead">
+      <rect x="486" y="46" width="2" height={H - 46} fill="url(#playGlow)" />
+      <path d="M 480 46 L 494 46 L 487 58 Z" fill="#22dddd" />
+    </g>
+  </g>
+</svg>
+
+<style>
+  /* A slow sweep, because a still playhead on a timeline looks stopped rather
+     than calm. Distance is small on purpose — this is ambience, not a demo. */
+  .playhead {
+    animation: sweep 9s ease-in-out infinite alternate;
+  }
+  @keyframes sweep {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(190px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .playhead {
+      animation: none;
+    }
+  }
+</style>

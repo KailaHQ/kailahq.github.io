@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import Nav from './Nav.astro'
 import Hero from './Hero.astro'
 import TrustBar from './TrustBar.astro'
-import FeatureRow from './FeatureRow.astro'
+import FeatureCard from './FeatureCard.astro'
 import EditPilot from './EditPilot.astro'
 import Compare from './Compare.astro'
 import Download from './Download.astro'
@@ -36,8 +36,8 @@ const copy = content[lang]
         <p class="mt-5 text-[15.5px] leading-[1.7] text-ash">{copy.featuresIntro.body}</p>
       </div>
 
-      <div class="mt-20 space-y-24 sm:mt-24 sm:space-y-32">
-        {copy.features.map((f, i) => <FeatureRow feature={f} flip={i % 2 === 1} />)}
+      <div class="mt-16 grid gap-5 sm:mt-20 lg:grid-cols-2">
+        {copy.features.map((f, i) => <FeatureCard feature={f} index={i} />)}
       </div>
     </section>
 

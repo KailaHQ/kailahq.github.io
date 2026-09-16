@@ -1,7 +1,7 @@
 ---
 import type { Copy } from '../data/content'
 import { APP_VERSION, REPO_URL, RELEASES_URL } from '../data/content'
-import ScreenShot from './ScreenShot.astro'
+import TimelineArt from './TimelineArt.astro'
 
 interface Props {
   copy: Copy
@@ -60,15 +60,17 @@ const versionNote = copy.hero.versionNote.replace('{v}', APP_VERSION)
       </div>
     </div>
 
-    <!-- The shot sits low and wide, clipped by the viewport on large screens so
-         the timeline runs off the edge the way it does in the app. -->
+    <!-- Sits low and wide, lit from underneath so it reads as a lit panel on a
+         dark desk rather than a flat rectangle. -->
     <div class="reveal relative mt-16 sm:mt-20" style="--reveal-delay:120ms">
       <div
         class="pointer-events-none absolute -inset-x-10 -top-10 bottom-10 rounded-[40px] bg-accent/8 blur-[90px]"
         aria-hidden="true"
       >
       </div>
-      <ScreenShot src="/shots/hero.png" alt={copy.hero.shotAlt} priority class="relative" />
+      <div class="screenframe relative">
+        <TimelineArt />
+      </div>
     </div>
   </div>
 </section>
