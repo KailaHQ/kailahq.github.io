@@ -2,15 +2,8 @@ export type Lang = 'en' | 'vi'
 
 export const LANGS: Lang[] = ['en', 'vi']
 
-/**
- * The repository the download cards and every source link point at.
- *
- * The brand is already Kaila, but the code still lives at the old address:
- * flip this to 'kailahq/KailaEdit' in the same change that transfers the repo
- * to the org and renames it, not before — until then a Kaila-shaped URL 404s
- * and the release API call comes back empty.
- */
-export const REPO = 'tuyenhm68/KomfyEdit'
+/** The repository the download cards and every source link point at. */
+export const REPO = 'KailaHQ/KailaEdit'
 export const REPO_URL = `https://github.com/${REPO}`
 export const RELEASES_URL = `${REPO_URL}/releases/latest`
 export const DOCS_URL = `${REPO_URL}/tree/main/docs`
