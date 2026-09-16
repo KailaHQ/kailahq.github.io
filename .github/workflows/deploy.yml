@@ -36,7 +36,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
 
+      # `enablement` defaults to false, which only reads the Pages config and
+      # fails on a repo where Pages was never turned on. Letting the action
+      # switch it on means nobody has to visit Settings first — the `pages:
+      # write` permission above is what allows it.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
