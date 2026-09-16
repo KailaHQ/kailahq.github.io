@@ -1,10 +1,10 @@
-# komfyedit-site
+# kaila-site
 
-Marketing site for [KomfyEdit](https://github.com/tuyenhm68/KomfyEdit). Astro + Tailwind v4,
+Marketing site for [KailaEdit](https://github.com/tuyenhm68/KomfyEdit). Astro + Tailwind v4,
 static output, bilingual (`/` English, `/vi/` Vietnamese).
 
-This folder is **deliberately outside the KomfyEdit repository** — it has its own git history and
-publishes to `github.com/komfyedit/komfyedit.github.io`.
+This folder is **deliberately outside the KailaEdit repository** — it has its own git history and
+publishes to `github.com/kailahq/kailahq.github.io`.
 
 ## Commands
 
@@ -24,7 +24,7 @@ publishes to `github.com/komfyedit/komfyedit.github.io`.
 
 ## Screenshots
 
-`public/shots/*.png` are placeholders copied out of the KomfyEdit repo. They are replaced with
+`public/shots/*.png` are placeholders copied out of the KailaEdit repo. They are replaced with
 real captures taken from the running app at a fixed 1920×1200 viewport:
 
 | File | Shows |
@@ -45,5 +45,5 @@ pnpm build
 ./deploy.ps1
 ```
 
-`deploy.ps1` pushes `dist/` to the `gh-pages` branch of `komfyedit/komfyedit.github.io`.
+`deploy.ps1` pushes `dist/` to the `gh-pages` branch of `kailahq/kailahq.github.io`.
 In the repo's **Settings → Pages**, set Source to *Deploy from a branch* → `gh-pages` / `/ (root)`.

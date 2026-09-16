@@ -4,6 +4,14 @@ export const LANGS: Lang[] = ['en', 'vi']
 
 /** Bumped at release time; the download section also asks the GitHub API at runtime. */
 export const APP_VERSION = '1.0.4'
+/**
+ * The repository the download cards and every source link point at.
+ *
+ * The brand is already Kaila, but the code still lives at the old address:
+ * flip this to 'kailahq/KailaEdit' in the same change that transfers the repo
+ * to the org and renames it, not before — until then a Kaila-shaped URL 404s
+ * and the release API call comes back empty.
+ */
 export const REPO = 'tuyenhm68/KomfyEdit'
 export const REPO_URL = `https://github.com/${REPO}`
 export const RELEASES_URL = `${REPO_URL}/releases/latest`
@@ -66,7 +74,7 @@ export interface Copy {
 const en: Copy = {
   htmlLang: 'en',
   meta: {
-    title: 'KomfyEdit — the offline desktop video editor',
+    title: 'KailaEdit — the offline desktop video editor',
     description:
       'A multi-track desktop video editor that runs fully offline. No account, no API key, no GPU, no network calls. Import, cut, grade, subtitle and export with bundled ffmpeg. Free and open source.',
   },
@@ -82,11 +90,11 @@ const en: Copy = {
     badge: 'Free · Open source · Apache-2.0',
     title: ['Cut the whole film', 'with the network off.'],
     lede:
-      'KomfyEdit is a desktop video editor that never phones home. Multi-track timeline, ripple and roll trims, colour, titles, subtitles — exported by the ffmpeg that ships inside the app. No account. No subscription. No watermark.',
+      'KailaEdit is a desktop video editor that never phones home. Multi-track timeline, ripple and roll trims, colour, titles, subtitles — exported by the ffmpeg that ships inside the app. No account. No subscription. No watermark.',
     ctaPrimary: 'Download for Windows',
     ctaSecondary: 'View source',
     versionNote: 'Version {v} · Windows & macOS',
-    shotAlt: 'The KomfyEdit editor: program monitor, multi-track timeline and properties panel',
+    shotAlt: 'The KailaEdit editor: program monitor, multi-track timeline and properties panel',
   },
   trust: [
     { value: '100%', label: 'Offline. Every frame stays on your disk' },
@@ -164,11 +172,11 @@ const en: Copy = {
     tc: '00:05',
     title: 'EditPilot drives the timeline.\nYour CLI. Your machine.',
     body:
-      'EditPilot is the agent panel inside the editor. It runs the AI CLI you already have — Claude Code, Codex or Antigravity — and reaches the project only through KomfyEdit’s own MCP server. Ask it to cut the silence out of a forty-minute take, then watch the clips move.',
+      'EditPilot is the agent panel inside the editor. It runs the AI CLI you already have — Claude Code, Codex or Antigravity — and reaches the project only through KailaEdit’s own MCP server. Ask it to cut the silence out of a forty-minute take, then watch the clips move.',
     points: [
       {
         title: 'No hidden model',
-        body: 'KomfyEdit ships no API key and no model. It starts the CLI you installed, under your own account.',
+        body: 'KailaEdit ships no API key and no model. It starts the CLI you installed, under your own account.',
       },
       {
         title: 'A narrow door',
@@ -187,7 +195,7 @@ const en: Copy = {
     tc: '00:06',
     title: 'What you give up by going offline: nothing.',
     body: 'A blunt comparison with the tools most people arrive from.',
-    cols: ['KomfyEdit', 'CapCut', 'Premiere Pro'],
+    cols: ['KailaEdit', 'CapCut', 'Premiere Pro'],
     rows: [
       { label: 'Works with no internet', cells: [true, false, false] },
       { label: 'No account required', cells: [true, false, false] },
@@ -203,8 +211,8 @@ const en: Copy = {
     body:
       'One installer, and no sign-in screen on first run. Media you import is copied into the project folder on your own disk.',
     platforms: [
-      { os: 'Windows', file: 'KomfyEdit-Setup-{v}.exe', note: 'Windows 10 or 11, 64-bit' },
-      { os: 'macOS', file: 'KomfyEdit-{v}.dmg', note: 'macOS 12+, Apple silicon & Intel' },
+      { os: 'Windows', file: 'KailaEdit-Setup-{v}.exe', note: 'Windows 10 or 11, 64-bit' },
+      { os: 'macOS', file: 'KailaEdit-{v}.dmg', note: 'macOS 12+, Apple silicon & Intel' },
     ],
     reqTitle: 'What it needs',
     reqs: [
@@ -229,7 +237,7 @@ const en: Copy = {
 const vi: Copy = {
   htmlLang: 'vi',
   meta: {
-    title: 'KomfyEdit — trình dựng phim desktop chạy offline',
+    title: 'KailaEdit — trình dựng phim desktop chạy offline',
     description:
       'Trình dựng phim đa track trên desktop, chạy hoàn toàn offline. Không tài khoản, không API key, không cần GPU, không gọi mạng. Nhập liệu, cắt dựng, chỉnh màu, làm phụ đề và xuất bản bằng ffmpeg đi kèm. Miễn phí, mã nguồn mở.',
   },
@@ -245,11 +253,11 @@ const vi: Copy = {
     badge: 'Miễn phí · Mã nguồn mở · Apache-2.0',
     title: ['Dựng xong cả bộ phim', 'khi đã ngắt mạng.'],
     lede:
-      'KomfyEdit là trình dựng phim desktop không bao giờ gửi dữ liệu đi đâu. Timeline đa track, trim ripple và roll, chỉnh màu, tiêu đề, phụ đề — xuất bản bằng chính ffmpeg nằm trong ứng dụng. Không tài khoản. Không thuê bao. Không watermark.',
+      'KailaEdit là trình dựng phim desktop không bao giờ gửi dữ liệu đi đâu. Timeline đa track, trim ripple và roll, chỉnh màu, tiêu đề, phụ đề — xuất bản bằng chính ffmpeg nằm trong ứng dụng. Không tài khoản. Không thuê bao. Không watermark.',
     ctaPrimary: 'Tải cho Windows',
     ctaSecondary: 'Xem mã nguồn',
     versionNote: 'Phiên bản {v} · Windows & macOS',
-    shotAlt: 'Giao diện KomfyEdit: màn hình chương trình, timeline đa track và bảng thuộc tính',
+    shotAlt: 'Giao diện KailaEdit: màn hình chương trình, timeline đa track và bảng thuộc tính',
   },
   trust: [
     { value: '100%', label: 'Offline. Mọi khung hình nằm trên ổ đĩa của bạn' },
@@ -327,11 +335,11 @@ const vi: Copy = {
     tc: '00:05',
     title: 'EditPilot điều khiển timeline.\nCLI của bạn. Máy của bạn.',
     body:
-      'EditPilot là bảng agent nằm trong trình dựng. Nó chạy chính CLI AI mà bạn đã cài — Claude Code, Codex hay Antigravity — và chạm tới project chỉ qua MCP server của KomfyEdit. Bảo nó cắt hết khoảng lặng trong một cú quay bốn mươi phút, rồi nhìn các clip tự dịch chuyển.',
+      'EditPilot là bảng agent nằm trong trình dựng. Nó chạy chính CLI AI mà bạn đã cài — Claude Code, Codex hay Antigravity — và chạm tới project chỉ qua MCP server của KailaEdit. Bảo nó cắt hết khoảng lặng trong một cú quay bốn mươi phút, rồi nhìn các clip tự dịch chuyển.',
     points: [
       {
         title: 'Không có model ẩn',
-        body: 'KomfyEdit không kèm API key, không kèm model. Nó khởi chạy CLI bạn tự cài, dưới tài khoản của bạn.',
+        body: 'KailaEdit không kèm API key, không kèm model. Nó khởi chạy CLI bạn tự cài, dưới tài khoản của bạn.',
       },
       {
         title: 'Một cánh cửa hẹp',
@@ -350,7 +358,7 @@ const vi: Copy = {
     tc: '00:06',
     title: 'Chọn offline thì mất gì? Không mất gì cả.',
     body: 'So sánh thẳng thắn với những công cụ mà đa số người dùng đi ra từ đó.',
-    cols: ['KomfyEdit', 'CapCut', 'Premiere Pro'],
+    cols: ['KailaEdit', 'CapCut', 'Premiere Pro'],
     rows: [
       { label: 'Chạy được khi không có internet', cells: [true, false, false] },
       { label: 'Không cần tài khoản', cells: [true, false, false] },
@@ -366,8 +374,8 @@ const vi: Copy = {
     body:
       'Một bộ cài, mở lần đầu không có màn hình đăng nhập. Media bạn nhập vào được sao chép vào thư mục project trên ổ đĩa của chính bạn.',
     platforms: [
-      { os: 'Windows', file: 'KomfyEdit-Setup-{v}.exe', note: 'Windows 10 hoặc 11, 64-bit' },
-      { os: 'macOS', file: 'KomfyEdit-{v}.dmg', note: 'macOS 12 trở lên, Apple silicon & Intel' },
+      { os: 'Windows', file: 'KailaEdit-Setup-{v}.exe', note: 'Windows 10 hoặc 11, 64-bit' },
+      { os: 'macOS', file: 'KailaEdit-{v}.dmg', note: 'macOS 12 trở lên, Apple silicon & Intel' },
     ],
     reqTitle: 'Yêu cầu hệ thống',
     reqs: [
