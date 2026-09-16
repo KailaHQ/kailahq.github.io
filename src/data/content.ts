@@ -119,7 +119,7 @@ const en: Copy = {
         'Match frame, in/out marks, split at playhead',
         'Clip colour labels, track lock / mute / solo, adjustment layers',
       ],
-      shot: '/shots/timeline.png',
+      shot: '/shots/02-timeline.png',
       shotAlt: 'Multi-track timeline with clips, waveforms and colour labels',
     },
     {
@@ -134,7 +134,7 @@ const en: Copy = {
         'Text overlays with presets and full typography controls',
         'LUTs, stickers and sound effects bundled in',
       ],
-      shot: '/shots/color.png',
+      shot: '/shots/03-color.png',
       shotAlt: 'Colour correction panel open beside the program monitor',
     },
     {
@@ -148,7 +148,7 @@ const en: Copy = {
         'Per-track subtitle styling, burned in on export',
         'Track solo and mute while you balance',
       ],
-      shot: '/shots/audio.png',
+      shot: '/shots/04-audio.png',
       shotAlt: 'Audio track with waveform and a styled subtitle track',
     },
     {
@@ -162,7 +162,7 @@ const en: Copy = {
         'Timeline XML export for round-tripping',
         'Local project storage with autosave',
       ],
-      shot: '/shots/export.png',
+      shot: '/shots/05-export.png',
       shotAlt: 'Export dialog showing format, resolution and quality settings',
     },
   ],
@@ -186,7 +186,7 @@ const en: Copy = {
       },
     ],
     note: 'Optional. The editor is complete without it.',
-    shot: '/shots/editpilot.png',
+    shot: '/shots/06-editpilot.png',
     shotAlt: 'EditPilot agent panel open next to the timeline',
   },
   compare: {
@@ -282,7 +282,7 @@ const vi: Copy = {
         'Match frame, đánh dấu in/out, cắt tại playhead',
         'Nhãn màu cho clip, khoá / tắt tiếng / solo track, adjustment layer',
       ],
-      shot: '/shots/timeline.png',
+      shot: '/shots/02-timeline.png',
       shotAlt: 'Timeline đa track với clip, waveform và nhãn màu',
     },
     {
@@ -297,7 +297,7 @@ const vi: Copy = {
         'Text overlay với preset và đầy đủ tuỳ chọn typography',
         'LUT, sticker và hiệu ứng âm thanh đi kèm sẵn',
       ],
-      shot: '/shots/color.png',
+      shot: '/shots/03-color.png',
       shotAlt: 'Bảng chỉnh màu mở cạnh màn hình chương trình',
     },
     {
@@ -311,7 +311,7 @@ const vi: Copy = {
         'Style phụ đề theo từng track, ghi thẳng vào video khi xuất',
         'Solo và mute track trong lúc cân tiếng',
       ],
-      shot: '/shots/audio.png',
+      shot: '/shots/04-audio.png',
       shotAlt: 'Track âm thanh với waveform và một track phụ đề đã tạo style',
     },
     {
@@ -325,7 +325,7 @@ const vi: Copy = {
         'Xuất Timeline XML để mang qua phần mềm khác',
         'Lưu project cục bộ kèm tự động lưu',
       ],
-      shot: '/shots/export.png',
+      shot: '/shots/05-export.png',
       shotAlt: 'Hộp thoại xuất bản với định dạng, độ phân giải và chất lượng',
     },
   ],
@@ -349,7 +349,7 @@ const vi: Copy = {
       },
     ],
     note: 'Không bắt buộc. Trình dựng vẫn đầy đủ nếu bạn không dùng.',
-    shot: '/shots/editpilot.png',
+    shot: '/shots/06-editpilot.png',
     shotAlt: 'Bảng agent EditPilot mở cạnh timeline',
   },
   compare: {

@@ -1,7 +1,7 @@
 ---
 import type { Copy } from '../data/content'
 import { REPO_URL, RELEASES_URL } from '../data/content'
-import TimelineArt from './TimelineArt.astro'
+import ScreenShot from './ScreenShot.astro'
 
 interface Props {
   copy: Copy
@@ -67,9 +67,7 @@ const { copy } = Astro.props
         aria-hidden="true"
       >
       </div>
-      <div class="screenframe relative">
-        <TimelineArt />
-      </div>
+      <ScreenShot src="/shots/01-hero.png" alt={copy.hero.shotAlt} priority class="relative" />
     </div>
   </div>
 </section>

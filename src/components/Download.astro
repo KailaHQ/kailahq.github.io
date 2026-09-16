@@ -37,9 +37,6 @@ const d = copy.download
           >
             <p class="font-display text-[20px] font-semibold tracking-[-0.03em]">{p.os}</p>
             <p class="mt-3 text-[13px] text-ash/75">{p.note}</p>
-            {/* Filled in from the release API. Empty until then — a placeholder
-                size would be a number we made up. */}
-            <p class="mt-1 font-mono text-[12px] text-ash empty:mt-0" data-dl-size />
             <p class="mt-6 text-[14px] font-medium text-accent">
               {copy.nav.download}
               <span class="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
@@ -65,9 +62,9 @@ const d = copy.download
   </div>
 
   <script is:inline define:vars={{ repo: REPO }}>
-    // Point each card straight at the newest installer and show its size. No
-    // version number anywhere: /releases/latest is always current, so the
-    // number would be maintenance with nothing to buy. The static markup
+    // Point each card straight at the newest installer. No size and no
+    // version number: /releases/latest is always the newest build, so both
+    // would be maintenance with nothing bought. The static markup
     // already links to the releases page, so a rate limit or an offline
     // visitor just gets the page as rendered.
     fetch(`https://api.github.com/repos/${repo}/releases/latest`, {
@@ -84,9 +81,6 @@ const d = copy.download
           const asset = pick(card.dataset.dl)
           if (!asset) continue
           card.href = asset.browser_download_url
-          const mb = Math.round(asset.size / 1048576)
-          const slot = card.querySelector('[data-dl-size]')
-          if (slot && mb) slot.textContent = `${mb} MB`
         }
       })
       .catch(() => {})
